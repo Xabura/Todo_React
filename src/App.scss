@@ -1,0 +1,194 @@
+.main-title {
+  text-align: center;
+  margin-block: 4rem 2rem;
+}
+
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-block: 2rem;
+  gap: 1rem;
+
+  .list-item {
+    width: 100%;
+    max-width: 540px;
+    padding-inline: 10px;
+    padding-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    border-bottom: solid 1px var(--purple);
+    cursor: pointer;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &:has(input:checked) {
+      .todo-title {
+        color: var(--gray);
+        text-decoration: line-through;
+      }
+    }
+
+    .todo-title {
+      cursor: pointer;
+      user-select: none;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+
+    .checkbox-wrapper {
+      cursor: pointer;
+      label {
+        position: relative;
+        display: block;
+        border-radius: 2px;
+        width: 26px;
+        height: 26px;
+        border: solid 1px var(--purple);
+
+        &::before {
+          display: none;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--purple);
+          border-radius: 0px;
+          background-image: url("/public/images/check.png");
+          background-repeat: no-repeat;
+          background-position: 50% 30%;
+        }
+      }
+      input:checked ~ label::before {
+        display: block;
+      }
+
+      input {
+        display: none;
+      }
+    }
+
+    .btn-wrapper {
+      margin-left: auto;
+      display: flex;
+      gap: 1rem;
+
+      button {
+        background-color: var(--white);
+        border: none;
+        cursor: pointer;
+
+        &:first-of-type:hover {
+          img {
+            filter: brightness(0) saturate(100%) invert(48%) sepia(66%)
+              saturate(5187%) hue-rotate(227deg) brightness(100%) contrast(104%);
+          }
+        }
+
+        &:last-of-type:hover {
+          img {
+            filter: brightness(0) saturate(100%) invert(14%) sepia(76%)
+              saturate(7420%) hue-rotate(0deg) brightness(85%) contrast(113%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  position: relative;
+  color: var(--dark-mode-white);
+
+  img {
+    transition: 200ms;
+    width: 0.5rem;
+  }
+
+  &.active {
+    .filter-wrapper {
+      display: block;
+    }
+
+    img {
+      rotate: 180deg;
+    }
+  }
+
+  .filter-wrapper {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    translate: 0% 100%;
+    border: solid 1px var(--purple);
+    background-color: var(--dark-mode-white);
+    color: var(--purple);
+    font-size: 1rem;
+    text-align: left;
+    border-radius: 5px;
+
+    li {
+      padding: 4px 5px;
+      transition: 200ms;
+      cursor: pointer;
+    }
+    li:hover {
+      background-color: var(--pale-purple);
+    }
+  }
+}
+
+.dark-mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  width: 38px;
+}
+
+.add-btn {
+  position: absolute;
+  right: calc((100vw - 770px) / 2 + 2rem);
+  bottom: 2rem;
+  color: var(--dark-mode-white);
+  background-color: var(--purple);
+  padding: 1rem;
+  border-radius: 1000px;
+
+  img {
+    display: block;
+  }
+}
+
+@media (max-width: 770px) {
+  .add-btn {
+    right: 2rem;
+  }
+}
+
+.empty-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  max-width: 220px;
+  background-image: url("/public/images/detective.png");
+  height: 200px;
+  background-repeat: no-repeat;
+
+  span {
+    font-weight: 500;
+    margin-top: auto;
+  }
+}

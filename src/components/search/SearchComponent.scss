@@ -1,0 +1,49 @@
+form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  max-width: 770px;
+  margin-inline: auto;
+  padding-inline: 10px;
+
+  .search-btn {
+    background-color: white;
+    border: none;
+  }
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex-grow: 1;
+
+  .search-input {
+    border: solid 1px var(--dark-mode-purple);
+    background-color: var(--white);
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 100%;
+    color: var(--black);
+
+    &:focus {
+      outline-color: var(--pale-purple);
+      outline-offset: 2px;
+    }
+  }
+
+  button {
+    position: absolute;
+    background-color: var(--white);
+    right: 10px;
+    top: 50%;
+    translate: 0% -50%;
+  }
+}
+
+.dark-mode-btn {
+  background-image: url("/public/images/moon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
