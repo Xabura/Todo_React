@@ -1,21 +1,15 @@
 import "./SearchComponent.scss";
-
-import { useState, useEffect } from "react";
+import useToggle from "../../hooks/useToggle";
+import { useState } from "react";
 
 function SearchComponent({ onSearch, onFilter }) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [filterIsActive, setFilterIsActive] = useState(false);
+  // const [isDarkMode, setIsDarkMode] = useState(false);
+  const [filterIsActive, toggleFilter] = useToggle(false);
+  const [filterValue, setFilterValue] = useState("All");
 
-  useEffect(() => {
-    document.body.classList.toggle("dark-mode", isDarkMode);
-  }, [isDarkMode]);
-
-  const onFilterToggle = () => {
-    setFilterIsActive(!filterIsActive);
-  };
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+  const onFilterClickHandler = (value) => {
+    onFilter(value);
+    setFilterValue(value);
   };
 
   return (
@@ -36,45 +30,40 @@ function SearchComponent({ onSearch, onFilter }) {
       </div>
       <button
         type="button"
-        onClick={onFilterToggle}
+        onClick={toggleFilter}
         className={
           filterIsActive
             ? "active fancy-btn filter-btn"
             : "fancy-btn filter-btn"
         }
       >
-        <span>All</span>
+        <span>{filterValue}</span>
         <img src="/images/arrow.png" alt=">" />
 
         <ul className="filter-wrapper">
           <li
             onClick={() => {
-              onFilter("all");
+              onFilterClickHandler("all");
             }}
           >
             All
           </li>
           <li
             onClick={() => {
-              onFilter("complete");
+              onFilterClickHandler("complete");
             }}
           >
             Complete
           </li>
           <li
             onClick={() => {
-              onFilter("incomplete");
+              onFilterClickHandler("incomplete");
             }}
           >
             Incomplete
           </li>
         </ul>
       </button>
-      <button
-        className="fancy-btn dark-mode-btn"
-        type="button"
-        onClick={toggleDarkMode}
-      ></button>
     </form>
   );
 }

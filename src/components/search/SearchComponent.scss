@@ -47,3 +47,52 @@ form {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: 143px;
+  position: relative;
+  color: var(--dark-mode-white);
+
+  img {
+    transition: 200ms;
+    width: 0.5rem;
+  }
+
+  &.active {
+    .filter-wrapper {
+      display: block;
+    }
+
+    img {
+      rotate: 180deg;
+    }
+  }
+
+  .filter-wrapper {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    translate: 0% 100%;
+    border: solid 1px var(--purple);
+    background-color: var(--dark-mode-white);
+    color: var(--purple);
+    font-size: 1rem;
+    text-align: left;
+    border-radius: 5px;
+
+    li {
+      padding: 4px 5px;
+      transition: 200ms;
+      cursor: pointer;
+    }
+    li:hover {
+      background-color: var(--pale-purple);
+    }
+  }
+}

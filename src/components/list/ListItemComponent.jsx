@@ -1,15 +1,13 @@
+import "./ListItemComponent.scss";
 import { useState } from "react";
 
-function ListItemComponent({ todo, deleteTodo, onEdit }) {
-  const [isChecked, setIsChecked] = useState(todo.status === "complete");
-  const onItemClick = () => {
-    if (todo.status === "complete") {
-      todo.status = "incomplete";
-      setIsChecked(true);
-    } else {
-      todo.status = "complete";
-      setIsChecked(false);
-    }
+function ListItemComponent({ todo, deleteTodo, onEdit, onTodoCheck }) {
+  const [isChecked, setIsChecked] = useState(todo.isCompleted === "complete");
+
+  const onItemClick = (todo) => {
+    setIsChecked(todo.isCompleted);
+    todo.isCompleted = !todo.isCompleted;
+    onTodoCheck(todo);
   };
 
   return (
@@ -25,7 +23,9 @@ function ListItemComponent({ todo, deleteTodo, onEdit }) {
       <label
         className="todo-title"
         htmlFor={`todo-${todo.id}`}
-        onClick={onItemClick}
+        onClick={() => {
+          onItemClick(todo);
+        }}
       >
         {todo.title}
       </label>

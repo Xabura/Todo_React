@@ -1,0 +1,59 @@
+header {
+  height: 4rem;
+  background-color: var(--purple);
+  position: relative;
+
+  .dark-mode-btn {
+    position: absolute;
+    right: 0.8rem;
+    top: 0.8rem;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    height: 4rem;
+
+    & > * {
+      height: 100%;
+      //   background-color: var(--white);
+      border: none;
+      text-decoration: none;
+      padding-inline: 1.5rem;
+      color: var(--dark-mode-white);
+      font-weight: 500;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 3px;
+        left: 50%;
+        bottom: 1rem;
+        background-color: var(--dark-mode-white);
+        border-radius: 500px;
+        transition: 100ms;
+      }
+
+      &:hover {
+        &::before {
+          width: calc(100% - 2rem);
+          left: 1rem;
+        }
+      }
+
+      &.active {
+        background-color: var(--white);
+        color: var(--dark-mode-purple);
+
+        &::before {
+          background-color: var(--white);
+        }
+      }
+    }
+  }
+}
